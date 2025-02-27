@@ -15,7 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroRabbit.Domain.Core", "MicroRabbit.Domain.Core\MicroRabbit.Domain.Core.csproj", "{987AAF96-D0F3-4E6A-B2F6-8744C01A3F39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroRabbit.Infra.Bus", "MicroRabbit.Infra.Bus\MicroRabbit.Infra.Bus.csproj", "{7F5E46AC-1030-4462-85B9-745A4100EC5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroRabbit.Infra.Bus", "MicroRabbit.Infra.Bus\MicroRabbit.Infra.Bus.csproj", "{7F5E46AC-1030-4462-85B9-745A4100EC5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroRabbit.Infra.IoC", "MicroRabbit.Infra.IoC\MicroRabbit.Infra.IoC.csproj", "{68F7BB37-F60B-4CF8-A7A3-CFA0A3BE6E0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{7F5E46AC-1030-4462-85B9-745A4100EC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F5E46AC-1030-4462-85B9-745A4100EC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F5E46AC-1030-4462-85B9-745A4100EC5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68F7BB37-F60B-4CF8-A7A3-CFA0A3BE6E0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68F7BB37-F60B-4CF8-A7A3-CFA0A3BE6E0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68F7BB37-F60B-4CF8-A7A3-CFA0A3BE6E0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68F7BB37-F60B-4CF8-A7A3-CFA0A3BE6E0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +44,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{987AAF96-D0F3-4E6A-B2F6-8744C01A3F39} = {1C3E178D-4555-402D-A9F4-826B81BD28CE}
 		{7F5E46AC-1030-4462-85B9-745A4100EC5E} = {C0FAACE1-D7B9-4D22-AC31-28981E1D8602}
+		{68F7BB37-F60B-4CF8-A7A3-CFA0A3BE6E0F} = {B8D2FC82-89AE-4493-A0BE-889AC224D9EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {856BEB20-B898-4C4B-B294-948DDBF611EC}
