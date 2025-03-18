@@ -1,5 +1,5 @@
 using MicroRabbit.Domain.Core.Bus;
-using MicroRabbit.Infra.IoC;
+using MicroRabbit.Transfer.Api.Extensions;
 using MicroRabbit.Transfer.Data.Context;
 using MicroRabbit.Transfer.Domain.EventHandlers;
 using MicroRabbit.Transfer.Domain.Events;
@@ -17,8 +17,7 @@ builder.Services.AddDbContext<TransferDbContext>(options =>
 });
 
 // Add services to the container.
-builder.Services.AddMvc();
-builder.Services.AddMvcCore();
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen(c =>
@@ -27,18 +26,13 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+//builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly));
 
-// Add services to the container.
-RegisterServices(builder.Services);
-void RegisterServices(IServiceCollection services)
-{
-    DependencyContainer.RegisterServices(services);
-}
+builder.RegisterServices();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -48,39 +42,18 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-ConfigureEventBus(app);
+app.UseHttpsRedirection();
 
-void ConfigureEventBus(WebApplication app)
-{
-    //throw new NotImplementedException();
-    var eventBus = app.Services.GetRequiredService<IEventBus>();
-    eventBus.Subscribe<TransferCreatedEvent, TransferEventHandler>();
-}
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-//app.MapGet("/weatherforecast", () =>
-//{
-//    var forecast = Enumerable.Range(1, 5).Select(index =>
-//        new WeatherForecast
-//        (
-//            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-//            Random.Shared.Next(-20, 55),
-//            summaries[Random.Shared.Next(summaries.Length)]
-//        ))
-//        .ToArray();
-//    return forecast;
-//})
-//.WithName("GetWeatherForecast")
-//.WithOpenApi();
+app.UseAuthorization();
 
 app.MapControllers();
+
+ConfigureEventBus(app);
+
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+void ConfigureEventBus(WebApplication app)
+{    
+    var eventBus = app.Services.GetRequiredService<IEventBus>();
+    eventBus.Subscribe<TransferCreatedEvent, TransferEventHandler>();
 }
